@@ -1,6 +1,5 @@
 #include "StateMachine.h"
 #include "State.h"
-
 #include <iostream>
 #include <memory>
 
@@ -25,10 +24,10 @@ void StateMachine::NextState() {
 	}
 
 	if (!states.empty()) {
-		std::unique_ptr<State> temp = states.top()->nextState();
+		std::unique_ptr<State> temp = states.top()->NextState();
 
 		if (temp != nullptr) {
-			if (temp->isReplacing()) {
+			if (temp->IsReplacing()) {
 				states.pop();
 			}
 
@@ -42,15 +41,15 @@ void StateMachine::LastState() {
 }
 
 void StateMachine::UpdateEvents() {
-	states.top()->updateEvents();
+	states.top()->UpdateEvents();
 }
 
 void StateMachine::Update() {
-	states.top()->update();
+	states.top()->Update();
 }
 
 void StateMachine::Render() {
-	states.top()->render();
+	states.top()->Render();
 }
 
 bool StateMachine::IsRunning() {

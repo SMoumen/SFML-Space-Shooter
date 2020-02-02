@@ -8,10 +8,10 @@ State::State(StateMachine& machine, sf::RenderWindow& window, bool replace)
 	, replacing{ replace } {
 }
 
-std::unique_ptr<State> State::nextState() {
+std::unique_ptr<State> State::NextState() {
 	return std::move(next);
 }
 
-bool State::isReplacing() {
+bool State::IsReplacing() {
 	return replacing;
 }

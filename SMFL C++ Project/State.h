@@ -17,13 +17,13 @@ public:
 	State(const State&) = delete;
 	State& operator = (const State&) = delete;
 
-	virtual void updateEvents() = 0;
-	virtual void update() = 0;
-	virtual void render() = 0;
+	virtual void UpdateEvents() = 0;
+	virtual void Update() = 0;
+	virtual void Render() = 0;
 
-	std::unique_ptr<State> nextState();
+	std::unique_ptr<State> NextState();
 
-	bool isReplacing();
+	bool IsReplacing();
 
 
 protected:
