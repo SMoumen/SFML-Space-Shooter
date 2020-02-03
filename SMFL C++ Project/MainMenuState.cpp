@@ -6,6 +6,7 @@
 #include "Define.h"
 #include <experimental/filesystem>
 #include <iostream>
+#include "PlayingState.h"
 #include <fstream>
 
 namespace fs = std::experimental::filesystem;
@@ -64,7 +65,7 @@ void MainMenuState::UpdateEvents() {
 			break;
 
 				case sf::Event::MouseButtonPressed:
-				//	if (isPressed(SpriteArray[0], window)) { machine.Run(machine.buildState<PlayingState>(machine, window, true)); }
+					if (isPressed(SpriteArray[1], window)) { machine.Run(machine.buildState<PlayingState>(machine, window, true)); }
 					if (isPressed(SpriteArray[3], window)) { machine.Quit(); }
 
 				
