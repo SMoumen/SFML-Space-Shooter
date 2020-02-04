@@ -1,8 +1,9 @@
 #pragma once
 #include "State.h"
 #include "Bullet.h"
-class Player;
 
+
+class Player;
 
 class PlayingState :
 	public State
@@ -14,29 +15,26 @@ public :
 
 	void UpdateKeyboardInputs(sf::Keyboard::Key key, bool isPressed);
 
-	void UpdateEvents();
-	void Update();
-	void Render();
+	void UpdateEvents() override;
+	void Update() override;
+	void Render() override;
 
 private:
 	//Variables and Booleans
 
 
-
 	//Arrays
 
 
-
 	//Vectors
-
 
 
 	//Class objects
 	std::unique_ptr<Player> player = nullptr;
 	std::unique_ptr<Bullet> pBullet = nullptr;
 	bool GamePaused;
-//	FPSCounter fpsCounter;
-//	Text versionText;
+	//	FPSCounter fpsCounter;
+	//	Text versionText;
 	bool playerShooting;
 
 	//SFML
@@ -44,9 +42,5 @@ private:
 	sf::Texture playerTexture;
 	sf::Texture bulletTexture;
 	sf::Clock dtClock;
-	float	  dtTimer;
+	sf::Texture backgroundTexture;
 };
-
-
-
-

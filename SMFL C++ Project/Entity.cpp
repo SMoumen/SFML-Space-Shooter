@@ -7,7 +7,8 @@ Entity::Entity(sf::Texture& texture) {
 	entity.setTexture(texture);
 }
 
-void Entity::RenderTo(sf::RenderWindow& window) {
+void Entity::RenderTo(sf::RenderWindow& window) const
+{
 	window.draw(entity);
 }
 
@@ -15,11 +16,13 @@ void Entity::SetPosition(sf::Vector2<float> newPos) {
 	entity.setPosition(newPos);
 }
 
-int Entity::getX() {
+float Entity::getX() const
+{
 	return entity.getPosition().x;
 }
 
-int Entity::getY() {
+float Entity::getY() const
+{
 	return entity.getPosition().y;
 }
 

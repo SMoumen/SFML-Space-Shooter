@@ -18,24 +18,25 @@ PlayingState::PlayingState(StateMachine& machine, sf::RenderWindow& window, bool
 	//Player information
 	playerTexture.loadFromFile("Sprites/PlayerSprite.png");
 	bulletTexture.loadFromFile("Sprites/BulletSprite.png");
+	backgroundTexture.loadFromFile("Sprites/BackgroundSprite.jpg");
+	
 	player = std::make_unique<Player>(&playerTexture, sf::Vector2<unsigned>(9, 4), 0.05, 1.5);
 	pBullet = std::make_unique<Bullet>(bulletTexture);
 	pBullet->SetPosition(sf::Vector2<float>(5000, 5000));
-	player->SetPosition(sf::Vector2<float>(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
+	player->SetPosition(sf::Vector2<float>(screen_width / 2, screen_height / 2));
 	GamePaused = false;
+	
 
 
 }
 
-PlayingState::~PlayingState() {
-	//
-}
+PlayingState::~PlayingState() = default;
 
 void PlayingState::UpdateKeyboardInputs(sf::Keyboard::Key key, bool isPressed) {
 	/*if (sf::Keyboard::isKeyPressed())
 	{
 
-		GamePaused = true;
+		GamePa used = true;
 		std::cout << "Game paused\n";
 		return;
 	}
@@ -103,7 +104,6 @@ void PlayingState::Render() {
 	//Render items
 //	fpsCounter.renderTo(window);
 	//versionText.renderTo(window);
-
 	player->RenderTo(window);
 	pBullet->RenderTo(window);
 

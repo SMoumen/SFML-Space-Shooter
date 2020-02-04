@@ -8,9 +8,9 @@ public:
 	MainMenuState(StateMachine& machine, sf::RenderWindow& window, bool replace = true);
 	~MainMenuState();
 
-	void UpdateEvents();
-	void Update();
-	void Render();
+	void UpdateEvents() override;
+	void Update() override;
+	void Render() override;
 
 private:
 	//Variables

@@ -11,7 +11,7 @@ bool isHovered(sf::Sprite sprite, sf::RenderWindow &window)
 	return false;
 }
 
-bool isPressed(sf::Sprite sprite, sf::RenderWindow& window)
+bool is_pressed(sf::Sprite sprite, sf::RenderWindow& window)
 {
 	if (isHovered(sprite, window) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		return true;

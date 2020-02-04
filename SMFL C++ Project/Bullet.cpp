@@ -3,14 +3,14 @@
 
 Bullet::Bullet(sf::Texture& texture) : Entity(texture)
 {
-	entity.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
+	entity.setOrigin(float(texture.getSize().x / 2), texture.getSize().y / 2);
 
 }
 
 
 void Bullet::Update(bool isBulletFiring, int bulletSpeed, int playerX, int playerY)
 {
-	if (getX() > SCREEN_WIDTH)
+	if (getX() > screen_width)
 	{
 		SetPosition(sf::Vector2f(5000, 5000));
 

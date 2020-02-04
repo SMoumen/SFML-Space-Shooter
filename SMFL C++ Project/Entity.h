@@ -5,11 +5,11 @@ class Entity {
 public:
 	Entity(sf::Texture& texture);
 
-	void RenderTo(sf::RenderWindow& window);
+	void RenderTo(sf::RenderWindow& window) const;
 	void SetPosition(sf::Vector2<float> newPos);
 
-	int getX();
-	int getY();
+	float getX() const;
+	float getY() const;
 	sf::FloatRect getGlobalBounds() const;
 
 protected:

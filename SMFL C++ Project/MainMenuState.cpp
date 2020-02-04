@@ -14,12 +14,11 @@ namespace fs = std::experimental::filesystem;
 MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bool replace ) : State(machine,window,replace)
 
 {
-
 	int i = 0;
 	float j = 0.0f;
 
-	std::string path = "Textures/";
-	std::string pathHovered = "Hovered/";
+	const std::string path = "Textures/";
+	const std::string pathHovered = "Hovered/";
 	int k = 0;
 	for (const auto& file : fs::directory_iterator(pathHovered))
 	{
@@ -35,22 +34,21 @@ MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bo
 
 		{
 			//SpriteArray[i].setOrigin(60,60);                                                             //(SpriteArray[i].getGlobalBounds().width / 2, SpriteArray[i].getGlobalBounds().height / 2);
-			SpriteArray[i].setPosition(SCREEN_WIDTH / 2.5f, (SCREEN_HEIGHT / 5.5f) + j);
+			SpriteArray[i].setPosition(screen_width / 2.5f, (screen_height / 5.5f) + j);
 
 		}
 		i++;
-		j += (SCREEN_HEIGHT /5.0f);
+		j += (screen_height /5.0f);
 	}
 	
 	
 }
 
-MainMenuState::~MainMenuState() {
-	//
-}
+MainMenuState::~MainMenuState() = default;
+	
+
 
 void MainMenuState::UpdateEvents() {
-	sf::Vector2<int> mousepos = sf::Mouse::getPosition(window);
 
 	/*Updating mouse position for button functionality
 	startGameButton.update(sf::Vector2<float>(mousepos));
@@ -65,8 +63,8 @@ void MainMenuState::UpdateEvents() {
 			break;
 
 				case sf::Event::MouseButtonPressed:
-					if (isPressed(SpriteArray[1], window)) { machine.Run(machine.buildState<PlayingState>(machine, window, true)); }
-					if (isPressed(SpriteArray[3], window)) { machine.Quit(); }
+					if (is_pressed(SpriteArray[1], window)) { machine.Run(machine.buildState<PlayingState>(machine, window, true)); }
+					if (is_pressed(SpriteArray[3], window)) { machine.Quit(); }
 
 				
 		}

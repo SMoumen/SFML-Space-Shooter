@@ -3,9 +3,9 @@
 
 
 void Game::Run() {
-	window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "SFML Framework!");
+	window.create(sf::VideoMode(screen_width, screen_height), "SFML Framework!");
 	window.setPosition({ window.getPosition().x, window.getPosition().y - 40 });
-	window.setFramerateLimit(FRAMERATE_LIMIT);
+	window.setFramerateLimit(framerate_limit);
 
 	machine.Run(StateMachine::buildState<MainMenuState>(machine, window, true));
 	//test
