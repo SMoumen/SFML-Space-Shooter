@@ -37,6 +37,10 @@ void Player::updatePlayer(bool continuous) {
 
 void Player::updateBorderBounds() {
 	//Entity cannot go through the borders of the screen
-	if (getX() <= SCREEN_WIDTH * 0) { SetPosition(sf::Vector2<float>(getX() + 30, getY())); } //Left Side
-	if (getX() >= SCREEN_WIDTH) { SetPosition(sf::Vector2<float>(getX() - 30, getY())); } //Right Side
+
+	if (getX() <= 50.0f) { SetPosition(sf::Vector2<float>(50.0f, getY())); } //Left Side
+	if (getX() >= screen_width - 50.0f) { SetPosition(sf::Vector2<float>(screen_width - 50.0f, getY())); } //Right Side
+	if (getY() <= 50.0f) { SetPosition(sf::Vector2<float>(getX(),  50.0f)); } //Left Side
+	if (getY() >= screen_height - 50.0f) {SetPosition(sf::Vector2<float>(getX(), screen_height -50.0f));}
 }
+
