@@ -25,6 +25,9 @@ public :
 
 	template <typename T>
 	static std::unique_ptr<T> buildState(StateMachine& machine, sf::RenderWindow& window, bool replace = true);
+	template <typename F>
+	static std::unique_ptr<F> buildState(sf::Text &text,StateMachine& machine, sf::RenderWindow& window, bool replace = true);
+
 
 
 private :
@@ -43,4 +46,8 @@ private :
 template <typename T>
 std::unique_ptr<T> StateMachine::buildState(StateMachine& machine, sf::RenderWindow& window, bool replace) {
 	return std::unique_ptr<T>(new T(machine, window, replace));
+}
+template <typename F>
+std::unique_ptr<F> StateMachine::buildState(sf::Text &text,StateMachine& machine, sf::RenderWindow& window, bool replace) {
+	return std::unique_ptr<F>(new F(text,machine, window, replace));
 }
