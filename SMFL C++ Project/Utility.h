@@ -3,3 +3,4 @@
 
 bool isHovered(sf::Sprite sprite, sf::RenderWindow& window);
 bool is_pressed(sf::Sprite sprite, sf::RenderWindow& window);
+int getNumberInRange(int x, int y);
