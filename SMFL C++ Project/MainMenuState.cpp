@@ -14,6 +14,7 @@ namespace fs = std::experimental::filesystem;
 MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bool replace ) : State(machine,window,replace)
 
 {
+	std::cout << "MainMenuState";
 	int i = 0;
 	float j = 0.0f;
 
@@ -40,8 +41,11 @@ MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bo
 		i++;
 		j += (screen_height /5.0f);
 	}
-	
-	
+	font.loadFromFile("Arial.ttf");
+
+	playerName.setFont(font);
+	playerName.setPosition(0, 0);
+	playerName.setFont(font);
 }
 
 MainMenuState::~MainMenuState() = default;
@@ -62,11 +66,49 @@ void MainMenuState::UpdateEvents() {
 			machine.Quit();
 			break;
 
-				case sf::Event::MouseButtonPressed:
-					if (is_pressed(SpriteArray[1], window)) { machine.Run(machine.buildState<PlayingState>(machine, window, true)); }
-					if (is_pressed(SpriteArray[3], window)) { machine.Quit(); }
+		case sf::Event::MouseButtonPressed:
+				if (is_pressed(SpriteArray[1], window))
+				{
+					
+					isPressed = true;
+					
 
-				
+
+		
+				}
+				if (is_pressed(SpriteArray[3], window)) { machine.Quit(); }
+		case sf::Event::TextEntered:
+
+			if (isPressed)
+			{
+				if (sfEvent.text.unicode < 128)
+				{
+					
+
+					if (sfEvent.text.unicode == '\b' && playerInput.getSize() != 0)
+					{
+						playerInput.erase(playerInput.getSize() - 1, 1);
+						playerName.setString(playerInput);
+					}
+					else if (sfEvent.text.unicode != ' ' && sfEvent.text.unicode != '\u0009' && sfEvent.text.unicode != '\u0001' && sfEvent.text.unicode !='\u0000')
+					{
+						
+							playerInput += sfEvent.text.unicode;
+							playerName.setString(playerInput);
+						
+					}
+					
+
+						std::cout << playerInput.getData() << std::endl;
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+						{
+							isNameDefined = true;
+							machine.Run(machine.buildState<PlayingState>(playerName, machine, window, true));
+
+						}
+					
+				}
+			}
 		}
 		}
 
@@ -76,7 +118,6 @@ void MainMenuState::UpdateEvents() {
 
 void MainMenuState::Update() {
 	//fpsCounter.updateCounter();
-
 	for (int i= 1;i < SpriteArray.size();i++)
 	{
 		if (isHovered(SpriteArray[i], window))
@@ -91,6 +132,8 @@ void MainMenuState::Update() {
 		}
 
 	}
+	window.draw(playerName);
+
 }
 
 void MainMenuState::Render() {
@@ -101,12 +144,15 @@ void MainMenuState::Render() {
 	//Render items
 //	startGameButton.renderTo(window);
 //	quitGameButton.renderTo(window);
-	for (sf::Sprite sprite : SpriteArray) {
-		window.draw(sprite);
+//
+	if (isPressed == false)
+	{
+		for (sf::Sprite sprite : SpriteArray) {
+			window.draw(sprite);
+		}
 	}
-//	titleText.renderTo(window);
-//	fpsCounter.renderTo(window);
 
 
+	window.draw(playerName);
 	window.display();
 }

@@ -26,10 +26,15 @@ private:
 	//SFML
 	sf::Event sfEvent;
 	sf::Sprite playButton;
+	sf::Text playerName;
+	sf::String playerInput;
 	std::array<sf::Texture, 4> textureArray;
 	std::array<sf::Texture, 3> textureHoveredArray;
 
 	std::array<sf::Sprite,4> SpriteArray;
+	sf::Font font;
+	bool isNameDefined = false;
+	bool isPressed = false;
 };
 
 
