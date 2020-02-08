@@ -15,7 +15,7 @@ public:
 	void updatePlayer(bool continuous);
 //	void setDirection(const Animation::Direction& direction);
 	void updateBorderBounds();
-
+	int lifes;
 private:
 	//Animation animation;
 	float speed;

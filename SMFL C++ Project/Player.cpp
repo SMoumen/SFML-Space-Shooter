@@ -8,7 +8,7 @@ Player::Player(sf::Texture* texture, sf::Vector2<unsigned> imageCount, float swi
 	: Entity(*texture) {
 
 	this->speed = speed;
-
+	lifes = 3;
 	entity.setOrigin(entity.getGlobalBounds().width / 2, entity.getGlobalBounds().height / 2);
 }
 
