@@ -6,9 +6,11 @@ std::mt19937 mt(rd());
 
 bool isHovered(sf::Sprite sprite, sf::RenderWindow &window)
 {
-	sf::IntRect tmpRect(sprite.getPosition().x, sprite.getPosition().y, sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
-	if (tmpRect.contains(sf::Mouse::getPosition(window)))
+	sf::Rect tmpRect(sprite.getPosition().x, sprite.getPosition().y, sprite.getGlobalBounds().width -100, sprite.getGlobalBounds().height -100);
+	if (tmpRect.contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y))
+		//tmpRect.contains(window.mapPixelToCoords(sf::Vector2<int>(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y))))
 	{
+		
 		return true;
 	}
 
