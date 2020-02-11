@@ -8,12 +8,13 @@
 
 #include <iostream>
 
-class Player : public Entity {
+class Player : public Entity
+{
 public:
 	Player(sf::Texture* texture, sf::Vector2<unsigned> imageCount, float switchTime, float speed);
 
 	void updatePlayer(bool continuous);
-//	void setDirection(const Animation::Direction& direction);
+	//	void setDirection(const Animation::Direction& direction);
 	void updateBorderBounds();
 	int lifes;
 private:

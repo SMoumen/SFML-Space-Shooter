@@ -4,7 +4,8 @@
 #include "StateMachine.h"
 #include "MainMenuState.h"
 
-class Game {
+class Game
+{
 public:
 	Game() = default;
 

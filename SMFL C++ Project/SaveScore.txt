@@ -1,0 +1,12 @@
+1	p1
+1	p2
+1	p3
+1	Player
+1	PlayerNameReady
+1	PlayerName
+1	lol
+0	aaa
+1	aaa
+1	test
+1	aa
+0	test

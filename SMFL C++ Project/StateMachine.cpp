@@ -4,30 +4,36 @@
 #include <memory>
 
 
-
 StateMachine::StateMachine()
-	: stateResume{ false }
-	, stateRunning{ false } {
+	: stateResume{false}
+	  , stateRunning{false}
+{
 }
 
-void StateMachine::Run(std::unique_ptr<State> state) {
+void StateMachine::Run(std::unique_ptr<State> state)
+{
 	stateRunning = true;
 	states.push(std::move(state));
 }
 
-void StateMachine::NextState() {
-	if (stateResume) {
+void StateMachine::NextState()
+{
+	if (stateResume)
+	{
 		//Cleanup current state
 		if (!states.empty()) { states.pop(); }
 
 		stateResume = false;
 	}
 
-	if (!states.empty()) {
+	if (!states.empty())
+	{
 		std::unique_ptr<State> temp = states.top()->NextState();
 
-		if (temp != nullptr) {
-			if (temp->IsReplacing()) {
+		if (temp != nullptr)
+		{
+			if (temp->IsReplacing())
+			{
 				states.pop();
 			}
 
@@ -36,26 +42,32 @@ void StateMachine::NextState() {
 	}
 }
 
-void StateMachine::LastState() {
+void StateMachine::LastState()
+{
 	stateResume = true;
 }
 
-void StateMachine::UpdateEvents() {
+void StateMachine::UpdateEvents()
+{
 	states.top()->UpdateEvents();
 }
 
-void StateMachine::Update() {
+void StateMachine::Update()
+{
 	states.top()->Update();
 }
 
-void StateMachine::Render() {
+void StateMachine::Render()
+{
 	states.top()->Render();
 }
 
-bool StateMachine::IsRunning() {
+bool StateMachine::IsRunning()
+{
 	return stateRunning;
 }
 
-void StateMachine::Quit() {
+void StateMachine::Quit()
+{
 	stateRunning = false;
 }

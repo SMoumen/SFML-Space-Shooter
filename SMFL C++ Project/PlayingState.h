@@ -10,7 +10,7 @@ class PlayingState :
 	public State
 {
 public :
-	PlayingState(sf::Text &text,StateMachine& machine, sf::RenderWindow& window, bool replace = true);
+	PlayingState(sf::Text& text, StateMachine& machine, sf::RenderWindow& window, bool replace = true);
 	PlayingState(const PlayingState&) = delete;
 	PlayingState& operator =(const PlayingState&) = delete;
 	~PlayingState();
@@ -47,6 +47,7 @@ private:
 	sf::Texture playerTexture;
 	sf::Texture bulletTexture;
 	sf::Clock dtClock;
+	sf::Sprite backgroundSprite;
 	sf::Texture backgroundTexture;
 	sf::Texture asteroidTexture;
 	int score;

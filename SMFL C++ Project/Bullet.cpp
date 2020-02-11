@@ -4,7 +4,6 @@
 Bullet::Bullet(sf::Texture& texture) : Entity(texture)
 {
 	entity.setOrigin(float(texture.getSize().x / 2), texture.getSize().y / 2);
-
 }
 
 
@@ -13,7 +12,6 @@ void Bullet::Update(bool isBulletFiring, int bulletSpeed, int playerX, int playe
 	if (getX() > screen_width)
 	{
 		SetPosition(sf::Vector2f(5000, 5000));
-
 	}
 
 	entity.move(0, 0);
@@ -23,11 +21,9 @@ void Bullet::Update(bool isBulletFiring, int bulletSpeed, int playerX, int playe
 
 	if (isBulletFiring)
 	{
-		if(getX() == 5000)
+		if (getX() == 5000)
 			SetPosition(sf::Vector2f(playerX, playerY));
-
 	}
 
 	entity.move(movement);
-
 }

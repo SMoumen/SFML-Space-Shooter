@@ -6,18 +6,14 @@ class Asteroids :
 	public Entity
 {
 public:
-	Asteroids(sf::Texture& texture,float speed);
+	Asteroids(sf::Texture& texture, float speed);
 	Asteroids(const Asteroids&) = delete;
 	Asteroids& operator =(const Asteroids&) = delete;
 	~Asteroids();
 
 
-	bool life = true;
 	sf::Sprite sprite;
-	bool Colliding(Entity &entity);
+	bool IsColliding(Entity& entity) const;
 	void Update();
 	float speed;
-	int count;
-	//void RenderTo(sf::RenderWindow& window) const;
 };
-

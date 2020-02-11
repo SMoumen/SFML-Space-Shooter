@@ -1,7 +1,8 @@
 #pragma once
 #include "State.h"
 
-class Entity {
+class Entity
+{
 public:
 	Entity(sf::Texture& texture);
 
@@ -15,4 +16,3 @@ public:
 protected:
 	sf::Sprite entity;
 };
-

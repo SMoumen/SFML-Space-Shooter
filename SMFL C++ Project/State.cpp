@@ -1,17 +1,19 @@
 #include "State.h"
 
 
-
 State::State(StateMachine& machine, sf::RenderWindow& window, bool replace)
-	: machine{ machine }
-	, window{ window }
-	, replacing{ replace } {
+	: machine{machine}
+	  , window{window}
+	  , replacing{replace}
+{
 }
 
-std::unique_ptr<State> State::NextState() {
+std::unique_ptr<State> State::NextState()
+{
 	return std::move(next);
 }
 
-bool State::IsReplacing() {
+bool State::IsReplacing()
+{
 	return replacing;
 }

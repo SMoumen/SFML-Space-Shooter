@@ -1,14 +1,12 @@
 #pragma once
 #include "State.h"
 #include <array>
+
 class EndGameState :
 	public State
 {
-
 public:
 	EndGameState(StateMachine& machine, sf::RenderWindow& window, bool replace = true);
-	//EndGameState(const EndGameState&) = delete;
-	//EndGameState& operator =(const EndGameState&) = delete;
 	~EndGameState();
 
 	void UpdateKeyboardInputs(sf::Keyboard::Key key, bool isPressed);
@@ -20,12 +18,5 @@ public:
 private:
 
 	std::array<sf::Texture, 4> textureArray;
-	std::array <sf::Sprite, 4> spriteArray;
-
-	sf::Sprite background;
-	
-
-	
+	std::array<sf::Sprite, 4> spriteArray;
 };
-
-

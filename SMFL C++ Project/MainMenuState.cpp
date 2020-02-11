@@ -11,7 +11,8 @@
 
 namespace fs = std::experimental::filesystem;
 
-MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bool replace ) : State(machine,window,replace)
+MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bool replace) : State(
+	machine, window, replace)
 
 {
 	std::cout << "MainMenuState";
@@ -28,126 +29,104 @@ MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bo
 	}
 
 	for (const auto& file : fs::directory_iterator(path))
-	{	
+	{
 		textureArray[i].loadFromFile(file.path().string());
 		SpriteArray[i].setTexture(textureArray[i]);
-		if (i !=0)
+		if (i != 0)
 
 		{
 			//SpriteArray[i].setOrigin(60,60);                                                             //(SpriteArray[i].getGlobalBounds().width / 2, SpriteArray[i].getGlobalBounds().height / 2);
 			SpriteArray[i].setPosition(screen_width / 2.5f, (screen_height / 5.5f) + j);
-
 		}
 		i++;
-		j += (screen_height /5.0f);
+		j += (screen_height / 5.0f);
 	}
 	font.loadFromFile("Arial.ttf");
 
 	playerName.setFont(font);
-	playerName.setPosition(0, 0);
 	playerName.setFont(font);
+	playerName.setPosition(screen_height / 2, screen_width / 2);
 }
 
 MainMenuState::~MainMenuState() = default;
+
+
+void MainMenuState::UpdateEvents()
+{
 	
 
-
-void MainMenuState::UpdateEvents() {
-
-	/*Updating mouse position for button functionality
-	startGameButton.update(sf::Vector2<float>(mousepos));
-	quitGameButton.update(sf::Vector2<float>(mousepos));
-	*/
-
 	//Events while loop
-	while (window.pollEvent(sfEvent)) {
-		switch (sfEvent.type) {
+	while (window.pollEvent(sfEvent))
+	{
+		switch (sfEvent.type)
+		{
 		case sf::Event::Closed:
 			machine.Quit();
 			break;
 
 		case sf::Event::MouseButtonPressed:
-				if (is_pressed(SpriteArray[1], window))
-				{
-					
-					isPressed = true;
-					
-
-
-		
-				}
-				if (is_pressed(SpriteArray[3], window)) { machine.Quit(); }
+			if (is_pressed(SpriteArray[1], window))
+			{
+				isPressed = true;
+			}
+			if (is_pressed(SpriteArray[3], window)) { machine.Quit(); }
 		case sf::Event::TextEntered:
 
 			if (isPressed)
 			{
 				if (sfEvent.text.unicode < 128)
 				{
-					
-
 					if (sfEvent.text.unicode == '\b' && playerInput.getSize() != 0)
 					{
 						playerInput.erase(playerInput.getSize() - 1, 1);
 						playerName.setString(playerInput);
 					}
-					else if (sfEvent.text.unicode != ' ' && sfEvent.text.unicode != '\u0009' && sfEvent.text.unicode != '\u0001' && sfEvent.text.unicode !='\u0000')
+					else if (sfEvent.text.unicode != ' ' && sfEvent.text.unicode != '\u0009' && sfEvent.text.unicode !=
+						'\u0001' && sfEvent.text.unicode != '\u0000')
 					{
-						
-							playerInput += sfEvent.text.unicode;
-							playerName.setString(playerInput);
-						
+						playerInput += sfEvent.text.unicode;
+
+						playerName.setString(playerInput);
 					}
-					
 
-						std::cout << playerInput.getData() << std::endl;
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-						{
-							isNameDefined = true;
-							machine.Run(machine.buildState<PlayingState>(playerName, machine, window, true));
-
-						}
-					
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+					{
+						isNameDefined = true;
+						machine.Run(machine.buildState<PlayingState>(playerName, machine, window, true));
+					}
 				}
 			}
 		}
-		}
-
+	}
 }
 
 
-
-void MainMenuState::Update() {
+void MainMenuState::Update()
+{
 	//fpsCounter.updateCounter();
-	for (int i= 1;i < SpriteArray.size();i++)
+	for (int i = 1; i < SpriteArray.size(); i++)
 	{
 		if (isHovered(SpriteArray[i], window))
 		{
-			SpriteArray[i].setTexture(textureHoveredArray[i-1]);
+			SpriteArray[i].setTexture(textureHoveredArray[i - 1]);
 		}
 
-		else {
-
+		else
+		{
 			SpriteArray[i].setTexture(textureArray[i]);
-
 		}
-
 	}
 	window.draw(playerName);
-
 }
 
-void MainMenuState::Render() {
+void MainMenuState::Render()
+{
 	window.clear();
-	
 
-	
-	//Render items
-//	startGameButton.renderTo(window);
-//	quitGameButton.renderTo(window);
-//
 	if (isPressed == false)
 	{
-		for (sf::Sprite sprite : SpriteArray) {
+		for (sf::Sprite sprite : SpriteArray)
+		{
 			window.draw(sprite);
 		}
 	}
