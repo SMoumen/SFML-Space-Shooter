@@ -1,29 +1,19 @@
 #include "Bullet.h"
 #include "Define.h"
 
-Bullet::Bullet(sf::Texture& texture) : Entity(texture)
+Bullet::Bullet(sf::Texture& texture, sf::Vector2<float> vect) : Entity(texture)
 {
 	entity.setOrigin(float(texture.getSize().x / 2), texture.getSize().y / 2);
+	entity.setPosition(vect.x, vect.y);
 }
 
 
-void Bullet::Update(bool isBulletFiring, int bulletSpeed, int playerX, int playerY)
+void Bullet::Update(bool isBulletFiring, int bulletSpeed, int playerX, int playerY, bool marked)
 {
-	if (getX() > screen_width)
+	if (marked == false)
 	{
-		SetPosition(sf::Vector2f(5000, 5000));
+		sf::Vector2f movement(0.0f, 0.0f);
+		movement.x += bulletSpeed;
+		entity.move(movement);
 	}
-
-	entity.move(0, 0);
-
-	sf::Vector2f movement(0.0f, 0.0f);
-	movement.x += bulletSpeed;
-
-	if (isBulletFiring)
-	{
-		if (getX() == 5000)
-			SetPosition(sf::Vector2f(playerX, playerY));
-	}
-
-	entity.move(movement);
 }

@@ -53,8 +53,6 @@ MainMenuState::~MainMenuState() = default;
 
 void MainMenuState::UpdateEvents()
 {
-	
-
 	//Events while loop
 	while (window.pollEvent(sfEvent))
 	{
@@ -93,6 +91,7 @@ void MainMenuState::UpdateEvents()
 					{
 						isNameDefined = true;
 						machine.Run(machine.buildState<PlayingState>(playerName, machine, window, true));
+						std::cout << "Playing State \n";
 					}
 				}
 			}

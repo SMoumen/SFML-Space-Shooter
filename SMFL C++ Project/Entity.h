@@ -9,6 +9,8 @@ public:
 	void RenderTo(sf::RenderWindow& window) const;
 	void SetPosition(sf::Vector2<float> newPos);
 
+	sf::Vector2f getPosition();
+
 	float getX() const;
 	float getY() const;
 	sf::FloatRect getGlobalBounds() const;

@@ -18,6 +18,11 @@ void Entity::SetPosition(sf::Vector2<float> newPos)
 	entity.setPosition(newPos);
 }
 
+sf::Vector2f Entity::getPosition()
+{
+	return sf::Vector2<float>(getX(), getY());
+}
+
 float Entity::getX() const
 {
 	return entity.getPosition().x;

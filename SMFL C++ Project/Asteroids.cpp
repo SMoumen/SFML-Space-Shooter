@@ -6,11 +6,12 @@
 class Bullet;
 class Player;
 
-Asteroids::Asteroids(sf::Texture& texture, float speed): Entity(texture)
+Asteroids::Asteroids(sf::Texture& texture, float speed, float x): Entity(texture)
 {
 	this->speed = speed;
 	sprite.setTexture(texture);
 	SetPosition(sf::Vector2f(2000.0f, getNumberInRange(150, screen_height - 150)));
+	sprite.setScale(x, x);
 }
 
 Asteroids::~Asteroids() = default;
@@ -31,7 +32,7 @@ void Asteroids::Update()
 
 	if (getX() <= 50.0f)
 	{
-		SetPosition(sf::Vector2f(2000.0f, screen_height / 2));
+		SetPosition(sf::Vector2f(getNumberInRange(2000, 20000), getNumberInRange(50, screen_height - 150)));
 	}
 	entity.move(movement);
 }

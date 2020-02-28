@@ -6,7 +6,7 @@ class Asteroids :
 	public Entity
 {
 public:
-	Asteroids(sf::Texture& texture, float speed);
+	Asteroids(sf::Texture& texture, float speed, float x);
 	Asteroids(const Asteroids&) = delete;
 	Asteroids& operator =(const Asteroids&) = delete;
 	~Asteroids();

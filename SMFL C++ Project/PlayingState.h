@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include "Bullet.h"
+#include <array>
 
 
 class Asteroids;
@@ -41,15 +42,17 @@ private:
 	bool playerShooting;
 
 	std::vector<std::unique_ptr<Asteroids>> asteroidVector;
+	std::vector<std::unique_ptr<Bullet>> bulletVector;
 
 	//SFML
 	sf::Event sfEvent;
 	sf::Texture playerTexture;
 	sf::Texture bulletTexture;
 	sf::Clock dtClock;
+	sf::Time time;
 	sf::Sprite backgroundSprite;
 	sf::Texture backgroundTexture;
-	sf::Texture asteroidTexture;
+	std::array<sf::Texture, 4> asteroidTextures;
 	int score;
 	sf::Text scoretext;
 	sf::Font font;
@@ -58,4 +61,5 @@ private:
 	std::string playerInput;
 	bool NameDefined = false;
 	bool isGameOver = false;
+	int cpt = 0;
 };

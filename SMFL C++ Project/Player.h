@@ -2,11 +2,7 @@
 #include "Entity.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/System/Vector2.hpp"
-
-#include "Entity.h"
-
-
-#include <iostream>
+#include "Bullet.h"
 
 class Player : public Entity
 {
@@ -16,6 +12,8 @@ public:
 	void updatePlayer(bool continuous);
 	//	void setDirection(const Animation::Direction& direction);
 	void updateBorderBounds();
+
+	std::vector<std::unique_ptr<Bullet>> BulletVector;
 	int lifes;
 private:
 	//Animation animation;
