@@ -19,4 +19,7 @@ private:
 
 	std::array<sf::Texture, 4> textureArray;
 	std::array<sf::Sprite, 4> spriteArray;
+
+	sf::Font font;
+	sf::Text defeatText;
 };
