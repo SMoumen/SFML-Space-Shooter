@@ -24,9 +24,11 @@ private:
 	sf::String playerInput;
 	std::array<sf::Texture, 4> textureArray;
 	std::array<sf::Texture, 3> textureHoveredArray;
-
+	sf::Text object;
 	std::array<sf::Sprite, 4> SpriteArray;
 	sf::Font font;
+	sf::Text Title;
+	sf::Font TitleFont;
 	bool isNameDefined = false;
 	bool isPressed = false;
 };

@@ -15,6 +15,13 @@ MainMenuState::MainMenuState(StateMachine& machine, sf::RenderWindow& window, bo
 	machine, window, replace)
 
 {
+	TitleFont.loadFromFile(FONT_TITLE);
+	Title.setFont(TitleFont);
+	Title.setFillColor(sf::Color::White);
+	Title.setString("Space Game Shooter");
+	Title.setPosition((screen_width / 4)-50, 100);
+	Title.setCharacterSize(72);
+	
 	std::cout << "MainMenuState";
 	int i = 0;
 	float j = 0.0f;
@@ -72,6 +79,9 @@ void MainMenuState::UpdateEvents()
 
 			if (isPressed)
 			{
+				object.setFont(font);
+				object.setPosition(screen_width / 2 - 100, screen_height / 2);
+				object.setString("Enter your player name :\n");
 				if (sfEvent.text.unicode < 128)
 				{
 					if (sfEvent.text.unicode == '\b' && playerInput.getSize() != 0)
@@ -83,7 +93,8 @@ void MainMenuState::UpdateEvents()
 						'\u0001' && sfEvent.text.unicode != '\u0000')
 					{
 						playerInput += sfEvent.text.unicode;
-
+						
+						
 						playerName.setString(playerInput);
 					}
 
@@ -121,16 +132,18 @@ void MainMenuState::Update()
 void MainMenuState::Render()
 {
 	window.clear();
-
 	if (isPressed == false)
 	{
 		for (sf::Sprite sprite : SpriteArray)
 		{
 			window.draw(sprite);
 		}
+		window.draw(Title);
+
 	}
 
-
+	
+	window.draw(object);
 	window.draw(playerName);
 	window.display();
 }
